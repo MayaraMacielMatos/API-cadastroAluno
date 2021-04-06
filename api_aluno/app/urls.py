@@ -1,9 +1,9 @@
 from django.urls import path
 
-from app.views import student_list, student_delete
+from app.views import StudentListAndCreate, StudentChangeAndDelete
 
 
 urlpatterns = [
-    path('', student_list),
-    path('<int:pk>/', student_delete),
+    path('', StudentListAndCreate.as_view()),
+    path('<int:pk>/', StudentChangeAndDelete.as_view()),
 ]

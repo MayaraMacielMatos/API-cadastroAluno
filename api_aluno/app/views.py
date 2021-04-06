@@ -1,18 +1,19 @@
-from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.views import APIView
+from rest_framework.exceptions import NotFound
 
 from app.models import StudentRegistration
 from app.serializers import StudentRegistrationSerializer
 
 
-@api_view(['GET', 'POST'])
-def student_list(request):
-    if request.method == 'GET':
+class StudentListAndCreate(APIView):
+    def get(self, request):
         registration = StudentRegistration.objects.all()
         serializer = StudentRegistrationSerializer(registration, many=True)
         return Response(serializer.data)
-    elif request.method == 'POST':
+
+    def post(self, request):
         serializer = StudentRegistrationSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -20,22 +21,27 @@ def student_list(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['GET', 'PUT', 'DELETE'])
-def student_delete(request, pk):
-    try:
-        student = StudentRegistration.objects.get(pk=pk)
-    except StudentRegistration.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
+class StudentChangeAndDelete(APIView):
+    def get_object(self, pk):
+        try:
+            return StudentRegistration.objects.get(pk=pk)
+        except StudentRegistration.DoesNotExist:
+            raise NotFound()
 
-    if request.method == 'GET':
+    def get(self, request, pk):
+        student = self.get_object(pk)
         serializer = StudentRegistrationSerializer(student)
         return Response(serializer.data)
-    elif request.method == 'PUT':
+
+    def put(self, request, pk):
+        student = self.get_object(pk)
         serializer = StudentRegistrationSerializer(student, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    elif request.method == 'DELETE':
+
+    def delete(self, request, pk):
+        student = self.get_object(pk)
         student.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

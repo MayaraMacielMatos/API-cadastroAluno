@@ -8,7 +8,11 @@ Nesta api está sendo utilizada os frameworks e linguagens abaixo:
 
 ```python
     source venv/bin/activate
+    python manage.py runserver
 ```
+
+**Port:** 
+> 8000
 
 **Migração**
 

@@ -29,6 +29,7 @@ Após executar o comando acima, verifique se não ocorreu erros e execute o segu
 
 | Paramêtros |  Tipo  |     Descrição      |
 |------------|--------|--------------------|
+| id         | number | Id do aluno        |
 | first_name | str    | Primeiro nome      |
 | last_name  | str    | Sobrenome          |
 | cpf        | number | Número de CPF      |

@@ -11,9 +11,6 @@ Nesta api está sendo utilizada os frameworks e linguagens abaixo:
     python manage.py runserver
 ```
 
-**Port:** 
-> 8000
-
 **Migração**
 
 Primeiramente gere o arquivo de migração com o comando abaixo
@@ -27,6 +24,7 @@ Após executar o comando acima, verifique se não ocorreu erros e execute o segu
 ```python
     python manage.py migrate
 ```
+
 
 **Paramêtros:** _(request body)_
 
@@ -53,3 +51,7 @@ Após executar o comando acima, verifique se não ocorreu erros e execute o segu
 }
 ```
 
+**Endpoints:**
+> http://127.0.0.1:8000/student-registration/
+> 
+> http://127.0.0.1:8000/student-registration/1/

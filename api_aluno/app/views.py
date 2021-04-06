@@ -1,14 +1,9 @@
-from rest_framework import generics
+from rest_framework import viewsets
 
 from app.models import StudentRegistration
 from app.serializers import StudentRegistrationSerializer
 
 
-class StudentListAndCreate(generics.ListCreateAPIView):
-    queryset = StudentRegistration.objects.all()
-    serializer_class = StudentRegistrationSerializer
-
-
-class StudentChangeAndDelete(generics.RetrieveUpdateDestroyAPIView):
+class StudentViewSet(viewsets.ModelViewSet):
     queryset = StudentRegistration.objects.all()
     serializer_class = StudentRegistrationSerializer

@@ -1,9 +1,9 @@
-from django.urls import path
+from rest_framework.routers import DefaultRouter
 
-from app.views import StudentListAndCreate, StudentChangeAndDelete
+from app.views import StudentViewSet
+
+router = DefaultRouter()
+router.register(r'', StudentViewSet)
+urlpatterns = router.urls
 
 
-urlpatterns = [
-    path('', StudentListAndCreate.as_view()),
-    path('<int:pk>/', StudentChangeAndDelete.as_view()),
-]

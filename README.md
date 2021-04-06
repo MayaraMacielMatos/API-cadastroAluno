@@ -1,5 +1,7 @@
 # API-cadastroAluno
 
+![](images/django-rest-framework.png)
+
 Nesta api está sendo utilizada os frameworks e linguagens abaixo:
 - Django Rest Framework
 - Python
